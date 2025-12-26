@@ -1,0 +1,9 @@
+{
+	"Name": "AudioReactor",
+	"Version": "1.0",
+	"Company": "Holdulv Music",
+	"Copyright": "Copyright (c) 2025 Holdulv Music",
+	"GamePlugin": true,
+	"EditorPlugin": true,
+	"MinEngineVersion": "1.0"
+}
