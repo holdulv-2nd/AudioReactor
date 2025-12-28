@@ -12,7 +12,7 @@ public class AudioReactor : GameModule
         BuildNativeCode = false;
 
         // 🔗 NAudio Reference
-        // This assumes NAudio.dll is sitting right next to this file!
+        // Since we are in Source/, the DLL is right here.
         string naudioPath = Path.Combine(FolderPath, "NAudio.dll");
 
         // 1. Compile Time: Let the code "see" NAudio
