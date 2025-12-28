@@ -10,7 +10,8 @@ Real-time audio visualization for Flax Engine. This plugin analyzes audio freque
 
 ## 📦 File Structure
 Ensure your files are arranged like this:
-AudioReactor/ ├── AudioReactor.flaxproj ├── README.md └── Source/ ├── NAudio.dll ├── AudioReactorPlugin.cs ├── AudioReactor.Build.cs ├── RealTimePulse.cs (Lights & Materials) ├── AudioCameraReactor.cs (FOV, Sway, Shake) ├── AudioTransformReactor.cs (Scale, Spin, Jitter) └── AudioUIReactor.cs (UI Punch, Color)
+AudioReactor/ ├── AudioReactor.flaxproj ├── README.md └── 
+Source/ ├── NAudio.dll ├── AudioReactorPlugin.cs ├── AudioReactor.Build.cs ├── RealTimePulse.cs (Lights & Materials) ├── AudioCameraReactor.cs (FOV, Sway, Shake) ├── AudioTransformReactor.cs (Scale, Spin, Jitter) └── AudioUIReactor.cs (UI Punch, Color)
 
 
 ## 🚀 How to Use
