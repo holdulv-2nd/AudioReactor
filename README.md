@@ -1,56 +1,54 @@
-n
-
 # 🎵 AudioReactor for Flax Engine
 
-**AudioReactor** is a plug-and-play real-time audio visualization plugin for Flax Engine. It bridges the **NAudio** library with Flax, allowing you to drive lights, materials, and gameplay events using audio frequencies (RMS/FFT) from your game music.
+Real-time audio visualization for Flax Engine. This plugin analyzes audio frequencies using NAudio and syncs your game world (lights, cameras, UI, objects) to the beat.
 
-## ⚡ The Problem & The Solution
-Flax Engine automatically imports `.wav` files as optimized `.flax` assets, which are great for playback but inaccessible to external analysis libraries like NAudio. 
+## ✨ Features
+* **Plug & Play:** Just drag it in, no C# knowledge required.
+* **Auto-Sync:** Handles the complex math to sync game time with audio time.
+* **The "Safe House":** Automatically manages raw .wav files in a `MusicData` folder so Flax doesn't corrupt them.
+* **Modular Reactors:** Different scripts for different needs (Camera, UI, Objects, Lights).
 
-**AudioReactor solves this automatically:**
-1. It intercepts `.wav` imports in the Editor.
-2. It creates a hidden **"Safe House"** folder (`/MusicData`) in your project root.
-3. It keeps a raw copy of the audio there for analysis, while Flax uses the optimized asset for playback.
-4. **Result:** You get perfect syncing without any manual file management.
+## 📦 File Structure
+Ensure your files are arranged like this:
+AudioReactor/ ├── AudioReactor.flaxproj ├── README.md └── Source/ ├── NAudio.dll ├── AudioReactorPlugin.cs ├── AudioReactor.Build.cs ├── RealTimePulse.cs (Lights & Materials) ├── AudioCameraReactor.cs (FOV, Sway, Shake) ├── AudioTransformReactor.cs (Scale, Spin, Jitter) └── AudioUIReactor.cs (UI Punch, Color)
 
----
-
-## 📦 Installation
-1. Download the latest **Release** (or clone this repo).
-2. Copy the `AudioReactor` folder into your project's `Plugins/` directory:
-MyProject/ ├── Content/ ├── Source/ └── Plugins/ └── AudioReactor/ <-- Put it here
-
-3. Open your project. The plugin handles the rest.
-
----
 
 ## 🚀 How to Use
 
-### 1. Import Your Music
-* Drag a `.wav` file into the Flax **Content Window**.
-* *Magic happens:* The plugin silently copies the raw file to the `MusicData` folder.
+### 1. Setup
+1. Drag the `AudioReactor` folder into your project's `Plugins/` folder.
+2. Open your project. The plugin will activate automatically.
+3. Drag a `.wav` file into your Content window.
+   * *The plugin will silently copy a raw version to `MusicData/` for analysis.*
 
-### 2. Set Up Audio
-* Add an **Audio Source** actor to your scene.
-* Assign your imported music clip to it.
+### 2. Available Reactors
 
-### 3. Add the Reactor
-* Add the `RealTimePulse` script to any actor (e.g., a Light or a Sphere).
-* **Music Source:** Drag your Audio Source actor here.
-* **Glow Lights:** Drag the Point Lights you want to animate here.
+#### 💡 RealTimePulse (Lights & Materials)
+Controls Point Lights and Emissive Materials.
+* **Rainbow Mode:** Cycles through colors on the beat.
+* **PulsePower:** Controls "snappiness." Higher = strobing.
+* **Usage:** Drag your `PointLight` or `StaticModel` into the slots.
 
-### 4. Play
-* Hit **F5**. The lights will pulse to the beat.
+#### 🎥 AudioCameraReactor (Cinematics)
+Makes the camera dance to the music.
+* **ZoomPunch:** Pulls the camera FOV in on bass hits.
+* **Handheld Sway:** Adds a natural "breathing" motion.
+* **ShakeMultiplier:** How violently the camera shakes on loud beats.
+* **Usage:** Attach to your Scene Camera actor.
+
+#### 🧊 AudioTransformReactor (Objects)
+Physical movement for meshes.
+* **Modes:**
+    * `ScalePulse`: Bounces like a speaker.
+    * `SpinOnBeat`: Rotates faster when music is loud.
+    * `PositionJitter`: Glitch effect.
+    * `RandomTeleport`: Chaos mode (use with caution!).
+
+#### 🖼️ AudioUIReactor (Interface)
+Syncs UI elements.
+* **LogoPunch:** Scales an image to the beat.
+* **RainbowText:** Changes text color on beat.
+* **Usage:** Attach to a UI Control (Label or Image).
 
 ---
-
-## ⚙️ Tuning
-* **Sensitivity:** Adjusts the overall brightness response.
-* **PulsePower:** Exponential scaling. Higher values (e.g., 3.0) create snappy, strobe-like beats. Lower values (e.g., 1.0) create smooth breathing.
-* **SmoothSpeed:** How fast the light fades out after a beat.
-
----
-
-## ⚖️ License & Credits
-* **AudioReactor** is created by **Holdulv Music** (Fiana).
-* This plugin uses [NAudio](https://github.com/naudio/NAudio) (c) Mark Heath, under the **Ms-PL License**.
+*Built with ❤️ by HoldulV Music using NAudio.*
